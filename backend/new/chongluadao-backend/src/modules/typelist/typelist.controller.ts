@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Logger,
   Param,
   Post,
   Res,
@@ -17,6 +18,7 @@ export class TypelistController {
 
   @Get(':typelist')
   async getTypelist(@Param('typelist') typelist: string, @Res() res) {
+    Logger.log("Typelist: " + typelist);
     try {
       const rs = await this.typeListService.getTypelist(typelist);
       return res.status(HttpStatus.OK).send(rs);
